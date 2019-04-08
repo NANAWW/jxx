@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxx.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.jxx.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="mail" jdbcType="VARCHAR" property="mail"/>
+        <result column="aids" jdbcType="VARCHAR" property="aids"/>
+        <result column="aid_p" jdbcType="INTEGER" property="aidP"/>
+        <result column="gids" jdbcType="VARCHAR" property="gids"/>
+        <result column="sids" jdbcType="VARCHAR" property="sids"/>
+        <result column="oids" jdbcType="VARCHAR" property="oids"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, username, password, phone, mail, aids, aid_p, gids, sids, oids
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from userinfos
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from userinfos
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.jxx.entity.User">
+        insert into userinfos (id, username, password,
+                               phone, mail, aids,
+                               aid_p, gids, sids, oids)
+        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{aids,jdbcType=VARCHAR},
+                #{aidP,jdbcType=INTEGER}, #{gids,jdbcType=VARCHAR}, #{sids,jdbcType=VARCHAR}, #{oids,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jxx.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into userinfos
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="aids != null">
+                aids,
+            </if>
+            <if test="aidP != null">
+                aid_p,
+            </if>
+            <if test="gids != null">
+                gids,
+            </if>
+            <if test="sids != null">
+                sids,
+            </if>
+            <if test="oids != null">
+                oids,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="aids != null">
+                #{aids,jdbcType=VARCHAR},
+            </if>
+            <if test="aidP != null">
+                #{aidP,jdbcType=INTEGER},
+            </if>
+            <if test="gids != null">
+                #{gids,jdbcType=VARCHAR},
+            </if>
+            <if test="sids != null">
+                #{sids,jdbcType=VARCHAR},
+            </if>
+            <if test="oids != null">
+                #{oids,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jxx.entity.User">
+        update userinfos
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="aids != null">
+                aids = #{aids,jdbcType=VARCHAR},
+            </if>
+            <if test="aidP != null">
+                aid_p = #{aidP,jdbcType=INTEGER},
+            </if>
+            <if test="gids != null">
+                gids = #{gids,jdbcType=VARCHAR},
+            </if>
+            <if test="sids != null">
+                sids = #{sids,jdbcType=VARCHAR},
+            </if>
+            <if test="oids != null">
+                oids = #{oids,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jxx.entity.User">
+        update userinfos
+        set username = #{username,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            phone    = #{phone,jdbcType=VARCHAR},
+            mail     = #{mail,jdbcType=VARCHAR},
+            aids     = #{aids,jdbcType=VARCHAR},
+            aid_p    = #{aidP,jdbcType=INTEGER},
+            gids     = #{gids,jdbcType=VARCHAR},
+            sids     = #{sids,jdbcType=VARCHAR},
+            oids     = #{oids,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
