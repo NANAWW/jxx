@@ -100,4 +100,20 @@ public class User {
     public void setOids(String oids) {
         this.oids = oids == null ? null : oids.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", aids='" + aids + '\'' +
+                ", aidP=" + aidP +
+                ", gids='" + gids + '\'' +
+                ", sids='" + sids + '\'' +
+                ", oids='" + oids + '\'' +
+                '}';
+    }
 }
