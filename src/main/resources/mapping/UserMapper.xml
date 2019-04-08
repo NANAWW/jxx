@@ -27,7 +27,7 @@
         from userinfos
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.jxx.entity.User">
+    <insert id="insert" parameterType="com.jxx.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into userinfos (id, username, password,
                                phone, mail, aids,
                                aid_p, gids, sids, oids)

@@ -3,6 +3,7 @@ package com.jxx.dao;
 import com.jxx.entity.Order;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);

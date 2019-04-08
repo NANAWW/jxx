@@ -20,8 +20,7 @@ public class HomeControlImpl implements HomeControl {
     GoodService goodService;
 
     @RequestMapping(value = "searchByKey", method = RequestMethod.GET)
-    @Override
-    public List<Good> searchByKey(@RequestParam(value = "key", required = true) String key) {
+    public List<Good> searchByKey(@RequestParam("key") String key) {
         return goodService.selectByKey(key);
     }
 

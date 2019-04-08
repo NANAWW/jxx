@@ -1,12 +1,10 @@
-package com.jxx.service;
+package com.jxx.control;
 
 import com.jxx.entity.User;
 
-public interface OrderService {
+public interface OrderControl {
 
     User insertOrder(int uid, int gid, int aid, int amount);
-
-    User insertOrder(int uid, int oid);
 
     User deleteOrder(int uid,int oid);
 

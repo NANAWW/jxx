@@ -29,7 +29,7 @@
         from goods
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.jxx.entity.Good">
+    <insert id="insert" parameterType="com.jxx.entity.Good" useGeneratedKeys="true" keyProperty="id">
         insert into goods (id, name, price,
                            pic_url, details, amount)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},

@@ -25,7 +25,7 @@
         from addresses
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.jxx.entity.Address">
+    <insert id="insert" parameterType="com.jxx.entity.Address" useGeneratedKeys="true" keyProperty="id">
         insert into addresses (id, address)
         values (#{id,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR})
     </insert>

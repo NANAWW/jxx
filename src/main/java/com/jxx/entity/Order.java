@@ -3,11 +3,13 @@ package com.jxx.entity;
 public class Order {
     private Integer id;
 
-    private Integer gid;
-
     private Integer uid;
 
-    private String address;
+    private Integer gid;
+
+    private Integer aid;
+
+    private Integer amount;
 
     public Integer getId() {
         return id;
@@ -15,14 +17,6 @@ public class Order {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getGid() {
-        return gid;
-    }
-
-    public void setGid(Integer gid) {
-        this.gid = gid;
     }
 
     public Integer getUid() {
@@ -33,11 +27,27 @@ public class Order {
         this.uid = uid;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getGid() {
+        return gid;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setGid(Integer gid) {
+        this.gid = gid;
+    }
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }

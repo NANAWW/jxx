@@ -20,7 +20,7 @@
         from shops
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.jxx.entity.Shop">
+    <insert id="insert" parameterType="com.jxx.entity.Shop" useGeneratedKeys="true" keyProperty="id">
         insert into shops (id, name, gids)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gids,jdbcType=VARCHAR})
     </insert>

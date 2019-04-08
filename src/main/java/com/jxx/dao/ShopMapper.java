@@ -3,6 +3,7 @@ package com.jxx.dao;
 import com.jxx.entity.Shop;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public interface ShopMapper {
     int deleteByPrimaryKey(Integer id);

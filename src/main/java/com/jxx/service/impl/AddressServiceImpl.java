@@ -8,7 +8,6 @@ import com.jxx.dao.UserMapper;
 import com.jxx.entity.Address;
 import com.jxx.entity.User;
 import com.jxx.service.AddressService;
-import com.jxx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,21 +17,36 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class PersonServiceImpl implements UserService, AddressService {
+public class AddressServiceImpl implements AddressService {
 
     @Autowired
     private Gson gson;
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private AddressMapper addressMapper;
+    AddressMapper addressMapper;
 
     @Override
-    public int insertUser(String username, String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        return userMapper.insertSelective(user);
+    public Address selectByAddress(String address) {
+        return addressMapper.selectByAddress(address);
+    }
+
+    @Transactional
+    @Override
+    public Address insertAddress(String address) {
+        try {
+            Address a;
+            if ((a = addressMapper.selectByAddress(address)) == null) {
+                Address _address = new Address();
+                _address.setAddress(address);
+                addressMapper.insertSelective(_address);
+                return _address;
+            } else {
+                return a;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("can't insert address");
+        }
     }
 
     @Transactional
@@ -51,6 +65,13 @@ public class PersonServiceImpl implements UserService, AddressService {
         } catch (JsonSyntaxException e) {
             throw new RuntimeException("can't parse json");
         }
+    }
+
+    @Transactional
+    @Override
+    public User insertAddress(int uid, String address) {
+        Address _address = insertAddress(address);
+        return insertAddress(uid, _address.getId());
     }
 
     @Transactional
@@ -100,24 +121,9 @@ public class PersonServiceImpl implements UserService, AddressService {
 
     @Transactional
     @Override
-    public Address insertAddress(String address) {
-        try {
-            Address a;
-            if ((a = addressMapper.selectByAddress(address)) == null) {
-                Address _address = new Address();
-                _address.setAddress(address);
-                addressMapper.insertSelective(_address);
-                return _address;
-            } else {
-                return a;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("can't insert address");
-        }
-    }
-
-    @Override
-    public Address selectByAddress(String address) {
-        return addressMapper.selectByAddress(address);
+    public User updateAddress(int uid, String old_address, String new_address) {
+        Address _address = selectByAddress(old_address);
+        deleteAddress(uid, _address.getId());
+        return insertAddress(uid, new_address);
     }
 }
