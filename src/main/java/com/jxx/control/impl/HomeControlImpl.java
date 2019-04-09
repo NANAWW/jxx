@@ -5,21 +5,26 @@ import com.jxx.control.HomeControl;
 import com.jxx.entity.Good;
 import com.jxx.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "home")
 public class HomeControlImpl implements HomeControl {
 
     @Autowired
+    Gson gson;
+    @Autowired
     GoodService goodService;
 
-    @RequestMapping(value = "searchByKey", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String hello() {
+        return "hello";
+    }
+
+    @RequestMapping(value = "searchByKey", method = RequestMethod.POST)
     public List<Good> searchByKey(@RequestParam("key") String key) {
         return goodService.selectByKey(key);
     }
